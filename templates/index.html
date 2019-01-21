@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+
+
+{% block body_block %}
+	{% for post in post %}
+		<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+			<figure>
+				<a href="{% url 'single' id=post.id %}"><img src="{{ post.image.url }}" alt="Image" class="img-responsive"></a>
+			</figure>
+			<span class="fh5co-meta"><a href="">{{ post.post_category.category_name }}</a></span>
+			<h2 class="fh5co-article-title"><a href="{% url 'single' id=post.id %}">{{ post.title }}</a></h2>
+			<span class="fh5co-meta fh5co-date">{{ post.posted }}</span>
+			<br>
+			<h2 class="fh5co-article-title"><a href="">{{ post.post_author.name }}</a></h2>
+		</article>
+	{% endfor %}
+<div class="pagination">
+    <span class="step-links">
+        {% if post.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ post.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ post.number }} of {{ post.paginator.num_pages }}.
+        </span>
+
+        {% if post.has_next %}
+            <a href="?page={{ contacts.next_page_number }}">next</a>
+            <a href="?page={{ contacts.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

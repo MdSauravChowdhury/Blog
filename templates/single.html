@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Single Post {% endblock %}
+
+{% block profile %}
+	<div class="fh5co-bio">
+		<figure>
+			<img src="{% static 'images/person1.jpg' %}" alt="Free HTML5 Bootstrap Template" class="img-responsive">
+		</figure>
+		<h3 class="heading">About Me</h3>
+		<h2>Emily Tran Le</h2>
+		<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+		<ul class="fh5co-social">
+			<li><a href="#"><i class="icon-twitter"></i></a></li>
+			<li><a href="#"><i class="icon-facebook"></i></a></li>
+			<li><a href="#"><i class="icon-instagram"></i></a></li>
+		</ul>
+	</div>
+{% endblock %}
+
+{% block body_block %}
+	{% if sp.id > f.id %}
+	<a href="{% url 'single' id=sp.id|add:'-1' %}" class="fh5co-post-prev"><span><i class="icon-chevron-left"></i> Prev</span></a>
+	{% endif %}
+
+	{% if sp.id < l.id %}
+	<a href="{% url 'single' id=sp.id|add:'1' %}" class="fh5co-post-next"><span>Next <i class="icon-chevron-right"></i></span></a>
+	{% endif %}
+<!-- END #fh5co-header -->
+
+			<article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+				<figure class="animate-box">
+					<!-- SP MINE SINGLE POST -->
+					<img src="{{ sp.image.url }}" alt="Image" class="img-responsive">
+				</figure>
+				<span class="fh5co-meta animate-box"><a href="single.html">{{ sp.post_category.category_name }}</a></span>
+				<h2 class="fh5co-article-title animate-box"><a href="single.html">{{ sp.title }}</a></h2>
+				<span class="fh5co-meta fh5co-date animate-box">{{ sp.posted }}</span>
+				
+				<div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+					<div class="row">
+						<div class="col-lg-8 cp-r animate-box">
+							 <p>{{ sp.descriptions }}</p>
+						</div>
+						<div class="col-lg-4 animate-box">
+							<div class="fh5co-highlight right">
+								<h4>Highlight</h4>
+								<p>{{ sp.highlight }}</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="row rp-b">
+						<div class="col-md-12 animate-box">
+							<blockquote>
+								<p>&ldquo;{{ sp.blockquote }}&rdquo; <cite>&mdash; {{ sp.post_author.name }}</cite></p>
+							</blockquote>
+						</div>
+					</div>
+
+					<!-- This one is related post section-->
+
+					<div class="row">
+						<div class="col-md-4 animate-box">
+							<figure>
+								<a href="">
+								 	<img src="{% static 'images/pic_5.jpg' %}" alt="Free HTML5 Bootstrap Template by FREEHTML5.co" class="img-responsive">
+									 <figcaption>This is a sweet image caption. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</figcaption>
+								</a>
+							</figure>
+						</div>
+					</div>
+					
+					
+				</div>
+			</article>
+{% endblock %}
